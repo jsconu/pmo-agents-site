@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--
+  PLACEHOLDER APP URL: every call-to-action on this page points to
+  https://app.pmo-agents.example/signup — find-and-replace this exact string with the real
+  webapp's public signup URL once real hosting exists (see README.md).
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pmo-agents — PM/PMO agents that show their work</title>
+  <meta name="description" content="A suite of PM/PMO agents that compute status, risk, and portfolio health with deterministic rubrics first — the model narrates a decided fact, it never guesses one.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="#top" class="brand">pmo-agents</a>
+      <nav class="topnav">
+        <a href="#agents">Agents</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://app.pmo-agents.example/signup" class="btn btn-small">Start free</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ Hero ============ -->
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <h1>Status reports your team can actually trust.</h1>
+        <p class="hero-sub">
+          pmo-agents computes every classification — on&nbsp;track, at&nbsp;risk, off&nbsp;track,
+          risk severity, portfolio health — with a deterministic rubric <em>before</em> any AI
+          model is involved. The model narrates a decision that's already been made. It never
+          invents one.
+        </p>
+        <div class="hero-ctas">
+          <a href="https://app.pmo-agents.example/signup" class="btn btn-primary btn-large">Start free</a>
+          <a href="#agents" class="btn btn-ghost btn-large">See the agents ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ The problem ============ -->
+    <section class="section">
+      <div class="wrap">
+        <h2><span class="marker">📋</span> The problem</h2>
+        <div class="cards cards-3">
+          <div class="card">
+            <h3>Manual status decks</h3>
+            <p>Someone spends an afternoon every week assembling a status update from memory,
+            Slack scrollback, and whatever's left in their notes.</p>
+          </div>
+          <div class="card">
+            <h3>Risk registers nobody updates</h3>
+            <p>A spreadsheet gets created at kickoff, filled in once, and never opened again —
+            until the thing it should have caught actually happens.</p>
+          </div>
+          <div class="card">
+            <h3>Or an AI tool that just guesses</h3>
+            <p>Plenty of "AI PM assistants" will happily tell you a project is on track from a
+            prompt and a vibe. When the data doesn't support an answer, that's a problem an
+            LLM should say out loud — not paper over.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ How it's different ============ -->
+    <section class="section section-alt">
+      <div class="wrap">
+        <h2><span class="marker">⚙️</span> How it's different</h2>
+        <p class="section-lede">
+          Every agent separates <strong>what happened</strong> (computed by plain, auditable code)
+          from <strong>how it's explained</strong> (written by the model). The rubric decides;
+          the model narrates. A few concrete examples from how the product actually behaves:
+        </p>
+        <div class="cards cards-3">
+          <div class="card card-example">
+            <p class="eyebrow">Milestone slip</p>
+            <p>A milestone that's a few days late reads <span class="pill pill-at_risk">at risk</span>,
+            not a panicked <span class="pill pill-off_track">off track</span> — there's a
+            configurable grace period before a slip escalates, because that's how a real PM
+            actually judges a late date.</p>
+          </div>
+          <div class="card card-example">
+            <p class="eyebrow">Sparse data</p>
+            <p>A project with too little recent activity to classify honestly reports
+            <span class="pill pill-insufficient">insufficient data</span> — never a guessed
+            <span class="pill pill-on_track">on track</span> just because nothing bad was found.</p>
+          </div>
+          <div class="card card-example">
+            <p class="eyebrow">Severity you can trust</p>
+            <p>Before a communication draft about an open risk can be saved, the model has to
+            correctly restate that risk's real severity. Get it wrong, and the save is rejected —
+            never silently corrected, never sent out misstated.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ The agents ============ -->
+    <section class="section" id="agents">
+      <div class="wrap">
+        <h2><span class="marker">🤖</span> The agents</h2>
+        <p class="section-lede">
+          Ten specialist agents, each doing one job well. Pick only the ones you need —
+          <a href="#pricing">pricing is a la carte</a>, never a bundle.
+        </p>
+        <div class="cards cards-agents">
+          <div class="card">
+            <p class="agent-name">Intake</p>
+            <p>Runs a real conversation with a stakeholder to build a project charter — asking
+            follow-ups on vague answers and flagging contradictions instead of just recording
+            whatever it's told.</p>
+          </div>
+          <div class="card">
+            <p class="agent-name">Backlog / BA</p>
+            <p>Decomposes a finalized charter into a prioritized, traceable backlog, and keeps it
+            groomed as new requests come in — with prioritization scored by config, not vibes.</p>
+          </div>
+          <div class="card">
+            <p class="agent-name">Status</p>
+            <p>Classifies project health from real task, milestone, and comms signals against an
+            explainable rubric, with every citation traceable back to the data that produced it.</p>
+          </div>
+          <div class="card">
+            <p class="agent-name">Risk</p>
+            <p>Surfaces dependency chains, ownerless work, technical-debt language, and reopened
+            tasks before they become a fire drill — tightening automatically as a milestone nears.</p>
+          </div>
+          <div class="card">
+            <p class="agent-name">Comms</p>
+            <p>Drafts audience-appropriate updates — internal, client-facing, executive, or
+            escalation — that are guardrailed to never soften or omit a real bad classification.</p>
+          </div>
+          <div class="card">
+            <p class="agent-name">Portfolio</p>
+            <p>Rolls every active project up into one leadership view: health, attention-needed
+            ranking, shared-resource conflicts, and cross-project risk clustering.</p>
+          </div>
+          <div class="card">
+            <p class="agent-name">Task Auto-Update</p>
+            <p>Reads real evidence in task history and comms to propose field updates — applied
+            automatically for autonomous projects, queued for approval when a dedicated PM wants
+            the final say.</p>
+          </div>
+          <div class="card">
+            <p class="agent-name">Digest</p>
+            <p>Compiles a periodic (daily/weekly/monthly) progress summary across tasks, status,
+            risk, and issues — so nobody has to assemble one by hand.</p>
+          </div>
+          <div class="card">
+            <p class="agent-name">Project Signal</p>
+            <p>Scans inbound messages — forwarded emails, chat excerpts, meeting notes — for
+            signs someone's asking for a new project, and flags it for a human to review.</p>
+          </div>
+          <div class="card">
+            <p class="agent-name">Retrospective</p>
+            <p>On project close, writes a short, specific set of lessons learned — the kind you'd
+            actually tell a new PM inheriting a similar project, not generic platitudes.</p>
+          </div>
+        </div>
+        <p class="agents-footnote">
+          Two more agents ship free with every plan: <strong>Orchestrator</strong>, which routes
+          and sequences the specialists above, and an in-app <strong>Help</strong> assistant for
+          getting the most out of the product itself.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ Pricing ============ -->
+    <section class="section section-alt" id="pricing">
+      <div class="wrap">
+        <h2><span class="marker">💳</span> Pricing</h2>
+        <p class="section-lede">
+          A la carte, per agent — no tiers, no bundles, no paying for capabilities you don't use.
+          Pick the agents you need at signup, add or remove any of them later as your needs change.
+        </p>
+        <!-- PRICING: update with real per-agent amounts once billing_plans.json is final. -->
+        <div class="pricing-box">
+          <p class="pricing-line"><strong>Each agent is priced and billed individually</strong>,
+          monthly, with no long-term commitment.</p>
+          <p class="pricing-line">Orchestrator and the Help assistant are included automatically —
+          they're not separately billed agents.</p>
+          <p class="pricing-line muted">Exact per-agent pricing is available on the signup page.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA footer ============ -->
+    <section class="cta-footer">
+      <div class="wrap">
+        <h2>Try it on your own projects.</h2>
+        <a href="https://app.pmo-agents.example/signup" class="btn btn-primary btn-large">Start free</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>&copy; 2026 pmo-agents. Early access — the product is actively evolving.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
