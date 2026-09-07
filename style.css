@@ -15,10 +15,59 @@
   --ink-soft: #4b5265;
   --border: #dbe6e3;
   --white: #ffffff;
+  /* The footer band is always a dark navy panel in both themes, the same way the teal CTA panel
+     below it is -- it never inherits from --ink, which flips meaning under dark mode. */
+  --footer-bg: #1f2430;
+  /* Accent color used as TEXT/icon color directly against the page background (links, icons,
+     the hero eyebrow badge). Kept separate from --primary, which also serves as a button
+     background and must stay a strong, saturated teal in both themes -- a color that reads well
+     as small text against near-black would be too light to use as a filled button. */
+  --accent-ink: var(--primary-dark);
+  --accent-ink-bg: rgba(15, 118, 110, 0.1);
+  --topbar-bg: rgba(255, 255, 255, 0.92);
+  --hero-gradient: linear-gradient(135deg, #ecf7f5 0%, #ffffff 55%, #eff9f6 100%);
 
   --font-display: "Space Grotesk", "Inter", sans-serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+/* ---------- dark mode ----------
+   Two blocks with identical values, on purpose: the media-query block follows the visitor's OS
+   setting by default, and the attribute block lets the on-page toggle override it explicitly in
+   either direction (a manual "light" choice on a dark system, or "dark" on a light one). Plain
+   CSS has no way to share the two without duplicating the declarations. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1117;
+    --bg-alt: #131a22;
+    --ink: #e6edf3;
+    --ink-soft: #9aa4b2;
+    --border: #333d49;
+    --white: #161d27;
+    --accent: #fbbf24;
+    --accent-ink: #5eead4;
+    --accent-ink-bg: rgba(45, 212, 191, 0.16);
+    --topbar-bg: rgba(13, 17, 23, 0.9);
+    --hero-gradient: linear-gradient(135deg, #0f1a19 0%, #0d1117 55%, #101a19 100%);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0d1117;
+  --bg-alt: #131a22;
+  --ink: #e6edf3;
+  --ink-soft: #9aa4b2;
+  --border: #333d49;
+  --white: #161d27;
+  --accent: #fbbf24;
+  --accent-ink: #5eead4;
+  --accent-ink-bg: rgba(45, 212, 191, 0.16);
+  --topbar-bg: rgba(13, 17, 23, 0.9);
+  --hero-gradient: linear-gradient(135deg, #0f1a19 0%, #0d1117 55%, #101a19 100%);
+}
+
+/* ---------- larger text ---------- */
+:root[data-text-size="large"] { font-size: 118%; }
 
 * { box-sizing: border-box; }
 
@@ -40,12 +89,33 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   padding: 0 24px;
 }
 
+/* ---------- accessibility ---------- */
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 12px;
+  z-index: 100;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 12px; }
+
+:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 2px;
+}
+
 /* ---------- topbar ---------- */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--topbar-bg);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--border);
 }
@@ -62,25 +132,23 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.15rem;
-  color: var(--primary);
+  color: var(--accent-ink);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
 }
 
-/* Matches webapp/static/style.css's own .brand::before treatment exactly -- the same small
-   accent mark on both properties, not just the same color. */
-.brand::before {
-  content: "";
+.brand-mark {
   display: inline-block;
   width: 0.7em;
   height: 0.7em;
   border-radius: 3px;
   background: var(--primary);
+  cursor: pointer;
 }
 
-.topnav { display: flex; align-items: center; gap: 24px; }
+.topnav { display: flex; align-items: center; gap: 18px; }
 
 .topnav a {
   color: var(--ink-soft);
@@ -89,7 +157,39 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   font-size: 0.95rem;
 }
 
-.topnav a:hover { color: var(--primary); }
+.topnav a:hover { color: var(--accent-ink); }
+
+/* ---------- icon buttons (theme / text-size toggles) ---------- */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.icon-btn:hover { border-color: var(--accent-ink); color: var(--accent-ink); }
+.icon-btn svg { width: 18px; height: 18px; }
+
+/* Which icon shows is driven by CSS, not the `hidden` attribute -- keyed off data-theme (and the
+   OS preference when no explicit choice has been made) the same way every color variable above
+   already is. */
+.icon-sun { display: none; }
+.icon-moon { display: inline; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icon-sun { display: inline; }
+  :root:not([data-theme="light"]) .icon-moon { display: none; }
+}
+:root[data-theme="dark"] .icon-sun { display: inline; }
+:root[data-theme="dark"] .icon-moon { display: none; }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -113,7 +213,7 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   border: 1.5px solid var(--border);
   padding: 8.5px 18.5px;
 }
-.btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+.btn-ghost:hover { border-color: var(--accent-ink); color: var(--accent-ink); }
 
 .btn-small { padding: 7px 16px; font-size: 0.9rem; color: #fff !important; background: var(--primary); }
 .btn-small:hover { background: var(--primary-dark); }
@@ -126,7 +226,7 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 .hero {
   /* Monochromatic teal wash, not a blue-to-purple blend -- a subtle tint of the brand's own
      primary rather than an unrelated multi-hue gradient. */
-  background: linear-gradient(135deg, #ecf7f5 0%, #ffffff 55%, #eff9f6 100%);
+  background: var(--hero-gradient);
   padding: 96px 0 88px;
   border-bottom: 1px solid var(--border);
 }
@@ -135,8 +235,8 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 
 .hero-eyebrow {
   display: inline-block;
-  background: rgba(15, 118, 110, 0.1);
-  color: var(--primary-dark);
+  background: var(--accent-ink-bg);
+  color: var(--accent-ink);
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.85rem;
@@ -178,7 +278,7 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 .section-icon {
   width: 1.4rem;
   height: 1.4rem;
-  color: var(--primary);
+  color: var(--accent-ink);
   flex-shrink: 0;
 }
 
@@ -267,7 +367,8 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 
 /* ---------- CTA footer ---------- */
 .cta-footer {
-  /* Monochromatic within the teal family, not a blue-to-purple blend. */
+  /* Monochromatic within the teal family, not a blue-to-purple blend. Always a dark teal panel
+     regardless of page theme, same reasoning as --footer-bg below. */
   background: linear-gradient(120deg, var(--primary) 0%, #0b4f4a 100%);
   padding: 72px 0;
   text-align: center;
@@ -293,7 +394,7 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 
 /* ---------- footer ---------- */
 .site-footer {
-  background: var(--ink);
+  background: var(--footer-bg);
   padding: 28px 0;
 }
 
@@ -304,11 +405,39 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   text-align: center;
 }
 
+/* ---------- logo click animation (just for fun) ---------- */
+@keyframes mark-pop {
+  0% { transform: rotate(0deg) scale(1); border-radius: 3px; }
+  35% { transform: rotate(180deg) scale(1.4); border-radius: 50%; }
+  70% { transform: rotate(300deg) scale(0.85); border-radius: 3px; }
+  100% { transform: rotate(360deg) scale(1); border-radius: 3px; }
+}
+.mark-pop { animation: mark-pop 0.6s ease; }
+
+.confetti-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  animation: confetti-burst 0.6s ease-out forwards;
+}
+@keyframes confetti-burst {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.4); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mark-pop { animation: none; }
+  .confetti-dot { animation: none; opacity: 0; }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 760px) {
   .hero { padding: 64px 0 56px; }
   .hero h1 { font-size: 1.9rem; }
   .cards-3, .cards-agents { grid-template-columns: 1fr; }
-  .topnav { gap: 14px; }
+  .topnav { gap: 10px; }
   .topnav a:not(.btn) { display: none; }
 }
