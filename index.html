@@ -47,10 +47,24 @@
 
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <a href="#top" class="brand" title="Give it a click">
-        <span class="brand-mark" id="brand-mark" aria-hidden="true"></span>
-        pmo-agents
-      </a>
+      <div class="topbar-brand-group">
+        <a href="#top" class="brand" title="Give it a click">
+          <span class="brand-mark" id="brand-mark" aria-hidden="true"></span>
+          pmo-agents
+        </a>
+        <button type="button" id="mascot-robot" class="mascot-btn" aria-label="Say hi" title="Say hi">
+          <svg viewBox="0 0 40 40" width="30" height="30" aria-hidden="true">
+            <rect class="mascot-arm-static" x="5" y="20" width="5" height="10" rx="2.5"/>
+            <g class="mascot-arm-wave"><rect x="30" y="20" width="5" height="10" rx="2.5"/></g>
+            <rect class="mascot-body" x="10" y="18" width="20" height="16" rx="4"/>
+            <line class="mascot-antenna" x1="20" y1="6" x2="20" y2="2"/>
+            <circle class="mascot-antenna-tip" cx="20" cy="2" r="1.8"/>
+            <rect class="mascot-head" x="12" y="6" width="16" height="14" rx="5"/>
+            <circle class="mascot-eye" cx="17" cy="12" r="1.6"/>
+            <circle class="mascot-eye" cx="23" cy="12" r="1.6"/>
+          </svg>
+        </button>
+      </div>
       <nav class="topnav">
         <a href="#agents">What it does</a>
         <a href="#pricing">Pricing</a>
@@ -205,60 +219,60 @@
         </p>
         <div class="cards cards-agents">
           <div class="card">
-            <p class="agent-name">Getting started</p>
+            <p class="agent-name"><svg class="agent-robot" viewBox="0 0 40 22" width="26" height="20" aria-hidden="true" style="color: #0f766e;"><line x1="20" y1="6" x2="20" y2="2" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="2" r="1.8" fill="currentColor"/><rect x="12" y="6" width="16" height="14" rx="5" fill="currentColor"/><circle cx="17" cy="12" r="1.6" fill="var(--white)"/><circle cx="23" cy="12" r="1.6" fill="var(--white)"/></svg>Getting started</p>
             <p>Has a real back-and-forth conversation with whoever's requesting the work to
             understand what's actually needed, asking a follow-up when an answer is vague, and
             speaking up when two answers don't add up, instead of just writing down whatever it's
             told.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Turning it into tasks</p>
+            <p class="agent-name"><svg class="agent-robot" viewBox="0 0 40 22" width="26" height="20" aria-hidden="true" style="color: #166534;"><line x1="20" y1="6" x2="20" y2="2" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="2" r="1.8" fill="currentColor"/><rect x="12" y="6" width="16" height="14" rx="5" fill="currentColor"/><circle cx="17" cy="12" r="1.6" fill="var(--white)"/><circle cx="23" cy="12" r="1.6" fill="var(--white)"/></svg>Turning it into tasks</p>
             <p>Takes what's been agreed on and breaks it into a clear, ordered task list, keeping
             that list current as new requests come in, with the order set by real, visible rules,
             not a gut feeling.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Status checks</p>
+            <p class="agent-name"><svg class="agent-robot" viewBox="0 0 40 22" width="26" height="20" aria-hidden="true" style="color: #1d4ed8;"><line x1="20" y1="6" x2="20" y2="2" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="2" r="1.8" fill="currentColor"/><rect x="12" y="6" width="16" height="14" rx="5" fill="currentColor"/><circle cx="17" cy="12" r="1.6" fill="var(--white)"/><circle cx="23" cy="12" r="1.6" fill="var(--white)"/></svg>Status checks</p>
             <p>Looks at real tasks, deadlines, and messages and tells you plainly whether a project
             is on track, worth watching, or behind, and points to exactly what led to that answer,
             so you can check it yourself.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Spotting trouble early</p>
+            <p class="agent-name"><svg class="agent-robot" viewBox="0 0 40 22" width="26" height="20" aria-hidden="true" style="color: #991b1b;"><line x1="20" y1="6" x2="20" y2="2" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="2" r="1.8" fill="currentColor"/><rect x="12" y="6" width="16" height="14" rx="5" fill="currentColor"/><circle cx="17" cy="12" r="1.6" fill="var(--white)"/><circle cx="23" cy="12" r="1.6" fill="var(--white)"/></svg>Spotting trouble early</p>
             <p>Notices problems before they become a fire drill: work stuck behind one holdup,
             tasks with no one clearly responsible for them, and warning phrases like "we'll deal
             with that later" buried in updates.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Writing updates</p>
+            <p class="agent-name"><svg class="agent-robot" viewBox="0 0 40 22" width="26" height="20" aria-hidden="true" style="color: #92400e;"><line x1="20" y1="6" x2="20" y2="2" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="2" r="1.8" fill="currentColor"/><rect x="12" y="6" width="16" height="14" rx="5" fill="currentColor"/><circle cx="17" cy="12" r="1.6" fill="var(--white)"/><circle cx="23" cy="12" r="1.6" fill="var(--white)"/></svg>Writing updates</p>
             <p>Drafts a status message in whatever tone fits, whether that's a quick internal note,
             a client-facing update, an executive summary, or an urgent heads-up, all without ever
             softening or leaving out a real problem.</p>
           </div>
           <div class="card">
-            <p class="agent-name">The big picture</p>
+            <p class="agent-name"><svg class="agent-robot" viewBox="0 0 40 22" width="26" height="20" aria-hidden="true" style="color: #6d28d9;"><line x1="20" y1="6" x2="20" y2="2" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="2" r="1.8" fill="currentColor"/><rect x="12" y="6" width="16" height="14" rx="5" fill="currentColor"/><circle cx="17" cy="12" r="1.6" fill="var(--white)"/><circle cx="23" cy="12" r="1.6" fill="var(--white)"/></svg>The big picture</p>
             <p>Rolls every active project into one view, so a leader can see which ones need
             attention first, without sitting through five separate status meetings to find out.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Keeping tasks current</p>
+            <p class="agent-name"><svg class="agent-robot" viewBox="0 0 40 22" width="26" height="20" aria-hidden="true" style="color: #0369a1;"><line x1="20" y1="6" x2="20" y2="2" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="2" r="1.8" fill="currentColor"/><rect x="12" y="6" width="16" height="14" rx="5" fill="currentColor"/><circle cx="17" cy="12" r="1.6" fill="var(--white)"/><circle cx="23" cy="12" r="1.6" fill="var(--white)"/></svg>Keeping tasks current</p>
             <p>Reads real evidence in task history and messages and proposes updates to task
             details, applied automatically if you want, or held for your okay first if you'd
             rather keep the final say.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Regular summaries</p>
+            <p class="agent-name"><svg class="agent-robot" viewBox="0 0 40 22" width="26" height="20" aria-hidden="true" style="color: #a16207;"><line x1="20" y1="6" x2="20" y2="2" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="2" r="1.8" fill="currentColor"/><rect x="12" y="6" width="16" height="14" rx="5" fill="currentColor"/><circle cx="17" cy="12" r="1.6" fill="var(--white)"/><circle cx="23" cy="12" r="1.6" fill="var(--white)"/></svg>Regular summaries</p>
             <p>Sends a plain-language recap of what's changed daily, weekly, or monthly, so nobody
             has to piece one together by hand.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Catching new requests</p>
+            <p class="agent-name"><svg class="agent-robot" viewBox="0 0 40 22" width="26" height="20" aria-hidden="true" style="color: #be185d;"><line x1="20" y1="6" x2="20" y2="2" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="2" r="1.8" fill="currentColor"/><rect x="12" y="6" width="16" height="14" rx="5" fill="currentColor"/><circle cx="17" cy="12" r="1.6" fill="var(--white)"/><circle cx="23" cy="12" r="1.6" fill="var(--white)"/></svg>Catching new requests</p>
             <p>Watches incoming messages (a forwarded email, a chat excerpt, meeting notes) for
             signs that someone's actually asking for a new project, and flags it for a person to
             look at.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Learning from what happened</p>
+            <p class="agent-name"><svg class="agent-robot" viewBox="0 0 40 22" width="26" height="20" aria-hidden="true" style="color: #374151;"><line x1="20" y1="6" x2="20" y2="2" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="2" r="1.8" fill="currentColor"/><rect x="12" y="6" width="16" height="14" rx="5" fill="currentColor"/><circle cx="17" cy="12" r="1.6" fill="var(--white)"/><circle cx="23" cy="12" r="1.6" fill="var(--white)"/></svg>Learning from what happened</p>
             <p>When a project wraps up, writes a short, specific list of what worked and what to do
             differently next time, the kind of thing you'd actually tell the next person taking on
             something similar, not generic advice.</p>
@@ -389,6 +403,15 @@
           document.body.appendChild(dot);
           (function (el) { el.addEventListener('animationend', function () { el.remove(); }); })(dot);
         }
+      });
+
+      // Mascot wave -- same component and behavior as the real webapp's header (base.html), so
+      // the brand carries through consistently from marketing site to product.
+      var mascotRobot = document.getElementById('mascot-robot');
+      mascotRobot.addEventListener('click', function () {
+        mascotRobot.classList.remove('mascot-waving');
+        void mascotRobot.offsetWidth;
+        mascotRobot.classList.add('mascot-waving');
       });
     })();
   </script>

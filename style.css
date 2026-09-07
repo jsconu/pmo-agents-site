@@ -128,6 +128,56 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   padding-bottom: 14px;
 }
 
+.topbar-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Brand mascot -- the same component/animation as the real webapp's header, so the brand carries
+   through from marketing site to product. Body/head/eyes use currentColor via --accent-ink so it
+   automatically follows the same light/dark accent color everything else on this page already uses. */
+.mascot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--accent-ink);
+}
+
+.mascot-btn .mascot-body,
+.mascot-btn .mascot-head,
+.mascot-btn .mascot-arm-static,
+.mascot-btn .mascot-arm-wave rect {
+  fill: currentColor;
+}
+
+.mascot-btn .mascot-eye { fill: var(--bg); }
+.mascot-btn .mascot-antenna { stroke: var(--accent); stroke-width: 2; }
+.mascot-btn .mascot-antenna-tip { fill: var(--accent); }
+
+.mascot-btn .mascot-arm-wave {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+}
+
+@keyframes mascot-wave {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-30deg); }
+  40% { transform: rotate(-50deg); }
+  60% { transform: rotate(-30deg); }
+  80% { transform: rotate(-50deg); }
+}
+
+.mascot-waving .mascot-arm-wave { animation: mascot-wave 0.8s ease-in-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot-waving .mascot-arm-wave { animation: none; }
+}
+
 .brand {
   font-family: var(--font-display);
   font-weight: 700;
@@ -330,7 +380,12 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   font-size: 1.05rem;
   color: var(--ink);
   margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
+
+.agent-robot { flex-shrink: 0; }
 
 .agents-footnote {
   margin-top: 30px;
