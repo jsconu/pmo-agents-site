@@ -1,12 +1,19 @@
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-  --terracotta: #c2673f;
-  --cream: #fbf6ee;
-  --cream-alt: #f4ece0;
+  /* Matches the real product's own accent exactly (webapp/static/style.css) -- the marketing
+     site previously used an unrelated blue/terracotta/cream palette that predated the webapp's
+     own researched teal decision (blue-calm + green-restorative intersection, ~5.6:1 on white).
+     A visitor should see the same brand on the site as in the product they sign up for. */
+  --primary: #0f766e;
+  --primary-dark: #0b5c56;
+  /* Warm amber accent, reused from the product's own amber-family semantic color
+     (status_agent's "at_risk" badge uses the same #92400e as its text color) rather than an
+     arbitrary new hue -- ~7.1:1 on white. */
+  --accent: #92400e;
+  --bg: #ffffff;
+  --bg-alt: #f1f7f6;
   --ink: #1f2430;
   --ink-soft: #4b5265;
-  --border: #e6dccb;
+  --border: #dbe6e3;
   --white: #ffffff;
 
   --font-display: "Space Grotesk", "Inter", sans-serif;
@@ -19,7 +26,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--cream);
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
   line-height: 1.6;
@@ -38,7 +45,7 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(251, 246, 238, 0.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--border);
 }
@@ -55,8 +62,22 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.15rem;
-  color: var(--ink);
+  color: var(--primary);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+/* Matches webapp/static/style.css's own .brand::before treatment exactly -- the same small
+   accent mark on both properties, not just the same color. */
+.brand::before {
+  content: "";
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 3px;
+  background: var(--primary);
 }
 
 .topnav { display: flex; align-items: center; gap: 24px; }
@@ -103,7 +124,9 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 
 /* ---------- hero ---------- */
 .hero {
-  background: linear-gradient(135deg, #eef2ff 0%, #fbf6ee 55%, #fdf1e8 100%);
+  /* Monochromatic teal wash, not a blue-to-purple blend -- a subtle tint of the brand's own
+     primary rather than an unrelated multi-hue gradient. */
+  background: linear-gradient(135deg, #ecf7f5 0%, #ffffff 55%, #eff9f6 100%);
   padding: 96px 0 88px;
   border-bottom: 1px solid var(--border);
 }
@@ -128,7 +151,7 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 
 /* ---------- sections ---------- */
 .section { padding: 76px 0; }
-.section-alt { background: var(--cream-alt); }
+.section-alt { background: var(--bg-alt); }
 
 .section h2 {
   font-size: 1.9rem;
@@ -138,7 +161,14 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   gap: 10px;
 }
 
-.marker { font-size: 1.5rem; }
+/* Replaces emoji section markers -- outline SVGs, single color via currentColor, no icon
+   font/library dependency (matches this site's own zero-build-step convention). */
+.section-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  color: var(--primary);
+  flex-shrink: 0;
+}
 
 .section-lede {
   font-size: 1.05rem;
@@ -170,12 +200,12 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 
 .card p { margin: 0; color: var(--ink-soft); }
 
-.card-example { border-left: 3px solid var(--terracotta); }
+.card-example { border-left: 3px solid var(--accent); }
 
 .eyebrow {
   font-family: var(--font-display);
   font-weight: 600;
-  color: var(--terracotta);
+  color: var(--accent);
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -225,7 +255,8 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 
 /* ---------- CTA footer ---------- */
 .cta-footer {
-  background: linear-gradient(120deg, var(--primary) 0%, #4338ca 100%);
+  /* Monochromatic within the teal family, not a blue-to-purple blend. */
+  background: linear-gradient(120deg, var(--primary) 0%, #0b4f4a 100%);
   padding: 72px 0;
   text-align: center;
 }
