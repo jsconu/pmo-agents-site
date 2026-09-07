@@ -155,7 +155,6 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   fill: currentColor;
 }
 
-.mascot-btn .mascot-eye { fill: var(--bg); }
 .mascot-btn .mascot-antenna { stroke: var(--accent); stroke-width: 2; }
 .mascot-btn .mascot-antenna-tip { fill: var(--accent); }
 
