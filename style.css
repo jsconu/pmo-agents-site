@@ -141,6 +141,7 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   background: none;
   border: none;
   padding: 0;
@@ -173,8 +174,50 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 
 .mascot-waving .mascot-arm-wave { animation: mascot-wave 0.8s ease-in-out; }
 
+/* Assemble: each of the mascot's 9 accent pieces "pops" into place in a staggered sequence, on a
+   plain click AND as the finale of the click-all-10-agent-robots combo below. */
+.mascot-assemble > * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes mascot-piece-pop {
+  0% { transform: scale(0); opacity: 0; }
+  55% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.mascot-piece-pop { animation: mascot-piece-pop 0.35s ease-out both; }
+
+/* A short, encouraging line from the mascot -- a small bit of fun on top of what's otherwise a
+   routine "did you check on your projects today" nudge. */
+.mascot-quote-bubble {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 4px) scale(0.9);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 5px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 20;
+}
+
+.mascot-quote-bubble.mascot-quote-visible {
+  opacity: 1;
+  transform: translate(-50%, 8px) scale(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mascot-waving .mascot-arm-wave { animation: none; }
+  .mascot-piece-pop { animation: none; }
+  .mascot-quote-bubble { transition: opacity 0.01s linear; }
 }
 
 .brand {

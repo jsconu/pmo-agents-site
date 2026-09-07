@@ -61,24 +61,26 @@
                  badge, sensor row, speech vent, ear tabs, radar dish, broadcast antenna, visor).
                  Mirrors the real webapp's header mascot exactly (same SVG, same markup). -->
             <rect class="mascot-arm-static" x="5" y="20" width="5" height="10" rx="2.5"/>
-            <rect x="4.5" y="18.5" width="6" height="2" rx="0.5" fill="#374151"/>
             <g class="mascot-arm-wave"><rect x="30" y="20" width="5" height="10" rx="2.5"/></g>
             <rect class="mascot-body" x="10" y="18" width="20" height="16" rx="2"/>
-            <polygon points="12,19.6 14.6,19.6 13.3,17.2" fill="#991b1b"/>
-            <circle cx="16" cy="26.5" r="1.3" fill="#6d28d9"/>
-            <circle cx="20" cy="26.5" r="1.3" fill="#6d28d9"/>
-            <circle cx="24" cy="26.5" r="1.3" fill="#6d28d9"/>
-            <polygon points="26,34 26,37.2 29.2,34" fill="#92400e"/>
-            <rect x="8.7" y="10" width="2.4" height="5" rx="1.2" fill="#0369a1"/>
-            <rect x="28.9" y="10" width="2.4" height="5" rx="1.2" fill="#0369a1"/>
-            <path d="M29.3 8.6 a2.3 2.3 0 0 1 4.5 0 Z" fill="#be185d"/>
-            <polyline points="24,6 22.6,4.6 25,3.3 23.6,1.9" fill="none" stroke="#a16207" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
             <line class="mascot-antenna" x1="18" y1="6" x2="18" y2="2"/>
             <circle class="mascot-antenna-tip" cx="18" cy="2" r="1.7"/>
             <rect class="mascot-head" x="12" y="6" width="16" height="14" rx="5"/>
-            <rect x="14.5" y="11" width="11" height="3.4" rx="1.5" fill="#1d4ed8"/>
-            <rect x="15.3" y="11.8" width="9.4" height="1.8" rx="0.9" fill="var(--bg)"/>
+            <!-- Each <g> below is one agent's accent piece, grouped so a multi-shape accent (the
+                 ear tabs, the visor's housing+slit) pops in as a single unit during the assemble
+                 animation -- see .mascot-assemble in style.css and the inline script below. -->
+            <g class="mascot-assemble">
+              <g><rect x="4.5" y="18.5" width="6" height="2" rx="0.5" fill="#374151"/></g>
+              <g><polygon points="12,19.6 14.6,19.6 13.3,17.2" fill="#991b1b"/></g>
+              <g><circle cx="16" cy="26.5" r="1.3" fill="#6d28d9"/><circle cx="20" cy="26.5" r="1.3" fill="#6d28d9"/><circle cx="24" cy="26.5" r="1.3" fill="#6d28d9"/></g>
+              <g><polygon points="26,34 26,37.2 29.2,34" fill="#92400e"/></g>
+              <g><rect x="8.7" y="10" width="2.4" height="5" rx="1.2" fill="#0369a1"/><rect x="28.9" y="10" width="2.4" height="5" rx="1.2" fill="#0369a1"/></g>
+              <g><path d="M29.3 8.6 a2.3 2.3 0 0 1 4.5 0 Z" fill="#be185d"/></g>
+              <g><polyline points="24,6 22.6,4.6 25,3.3 23.6,1.9" fill="none" stroke="#a16207" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></g>
+              <g><rect x="14.5" y="11" width="11" height="3.4" rx="1.5" fill="#1d4ed8"/><rect x="15.3" y="11.8" width="9.4" height="1.8" rx="0.9" fill="var(--bg)"/></g>
+            </g>
           </svg>
+          <span id="mascot-quote" class="mascot-quote-bubble" role="status"></span>
         </button>
       </div>
       <nav class="topnav">
@@ -445,6 +447,47 @@
         }
       });
 
+      // A short, encouraging line from the mascot -- a small bit of fun on top of what's
+      // otherwise a routine "check on your projects" nudge.
+      var MASCOT_QUOTES = [
+        "Reporting in. Nothing's on fire right now.",
+        "Ten specialists, zero guessing.",
+        "Happy to help you skip the status meeting.",
+        "Let's see what's actually going on today.",
+        "No drama. Just the facts.",
+        "Assembled and ready to work.",
+        "Good news and bad news get treated the same here.",
+        "Here to make the boring parts faster."
+      ];
+      var COMBO_QUOTES = [
+        "All ten robots, working together.",
+        "Full team assembled. Let's ship something.",
+        "Every specialist, one mascot. Let's get to it."
+      ];
+      var mascotQuoteTimer = null;
+      function showMascotQuote(pool, durationMs) {
+        var bubble = document.getElementById('mascot-quote');
+        if (!bubble) return;
+        bubble.textContent = pool[Math.floor(Math.random() * pool.length)];
+        bubble.classList.add('mascot-quote-visible');
+        clearTimeout(mascotQuoteTimer);
+        mascotQuoteTimer = setTimeout(function () {
+          bubble.classList.remove('mascot-quote-visible');
+        }, durationMs);
+      }
+
+      // Re-triggers the mascot's 8 accent-piece pop animation, staggered so they visibly snap
+      // into place one after another rather than all at once.
+      function playMascotAssemble(mascotEl) {
+        var pieces = mascotEl.querySelectorAll('.mascot-assemble > *');
+        pieces.forEach(function (piece, i) {
+          piece.classList.remove('mascot-piece-pop');
+          void piece.getBoundingClientRect();
+          piece.style.animationDelay = (i * 70) + 'ms';
+          piece.classList.add('mascot-piece-pop');
+        });
+      }
+
       // Mascot wave -- same component and behavior as the real webapp's header (base.html), so
       // the brand carries through consistently from marketing site to product.
       var mascotRobot = document.getElementById('mascot-robot');
@@ -452,17 +495,93 @@
         mascotRobot.classList.remove('mascot-waving');
         void mascotRobot.offsetWidth;
         mascotRobot.classList.add('mascot-waving');
+        playMascotAssemble(mascotRobot);
+        showMascotQuote(MASCOT_QUOTES, 2600);
       });
 
       // Each of the 10 "What it does" agent robots gets its own distinct shape (set in the
       // markup) and its own distinct click animation (set here via data-anim), so the "ten
       // specialized helpers" pitch is genuinely visual, not one icon recolored ten times.
-      document.querySelectorAll('.agent-robot-btn').forEach(function (btn) {
+      //
+      // Click-all-10 combo: once every one of the 10 has been clicked at least once, each flies
+      // (as a temporary fixed-position clone of its own SVG, so the real cards are never touched)
+      // up toward the header mascot while the page scrolls back to top, then the header mascot
+      // itself plays its assemble animation as the finale -- a literal Transformers-style combine.
+      var agentRobotButtons = document.querySelectorAll('.agent-robot-btn');
+      var clickedRobots = new Set();
+      var prefersReducedMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function playCombineAnimation() {
+        if (prefersReducedMotion) {
+          window.scrollTo(0, 0);
+          mascotRobot.classList.remove('mascot-waving');
+          void mascotRobot.offsetWidth;
+          mascotRobot.classList.add('mascot-waving');
+          playMascotAssemble(mascotRobot);
+          showMascotQuote(COMBO_QUOTES, 3400);
+          return;
+        }
+
+        var clones = [];
+        agentRobotButtons.forEach(function (robotBtn) {
+          var rect = robotBtn.getBoundingClientRect();
+          var clone = robotBtn.querySelector('svg').cloneNode(true);
+          clone.style.position = 'fixed';
+          clone.style.left = rect.left + 'px';
+          clone.style.top = rect.top + 'px';
+          clone.style.width = rect.width + 'px';
+          clone.style.height = rect.height + 'px';
+          clone.style.margin = '0';
+          clone.style.zIndex = '9999';
+          clone.style.pointerEvents = 'none';
+          clone.style.transition = 'transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.9s ease';
+          document.body.appendChild(clone);
+          clones.push(clone);
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // The header is position: sticky, so its on-screen rect is effectively fixed for the rest
+        // of the flight as soon as we're a little way into the scroll -- a short buffer here is
+        // enough, no need to wait for the whole smooth-scroll animation to finish.
+        setTimeout(function () {
+          var targetRect = mascotRobot.getBoundingClientRect();
+          var targetX = targetRect.left + targetRect.width / 2;
+          var targetY = targetRect.top + targetRect.height / 2;
+
+          clones.forEach(function (clone, i) {
+            var cloneRect = clone.getBoundingClientRect();
+            var startX = cloneRect.left + cloneRect.width / 2;
+            var startY = cloneRect.top + cloneRect.height / 2;
+            clone.style.transitionDelay = (i * 25) + 'ms';
+            clone.style.transform = 'translate(' + (targetX - startX) + 'px, ' + (targetY - startY) + 'px) scale(0.15)';
+            clone.style.opacity = '0';
+          });
+
+          setTimeout(function () {
+            clones.forEach(function (clone) { clone.remove(); });
+            mascotRobot.classList.remove('mascot-waving');
+            void mascotRobot.offsetWidth;
+            mascotRobot.classList.add('mascot-waving');
+            playMascotAssemble(mascotRobot);
+            showMascotQuote(COMBO_QUOTES, 3400);
+          }, 1000);
+        }, 80);
+      }
+
+      agentRobotButtons.forEach(function (btn, index) {
         var animClass = 'robot-play-' + btn.dataset.anim;
         btn.addEventListener('click', function () {
           btn.classList.remove(animClass);
           void btn.offsetWidth;
           btn.classList.add(animClass);
+
+          clickedRobots.add(index);
+          if (clickedRobots.size === agentRobotButtons.length) {
+            clickedRobots.clear();
+            playCombineAnimation();
+          }
         });
       });
     })();
