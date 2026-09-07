@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <!--
   PLACEHOLDER APP URL: every call-to-action on this page points to
-  https://app.pmo-agents.example/signup — find-and-replace this exact string with the real
+  https://app.pmo-agents.example/signup. Find-and-replace this exact string with the real
   webapp's public signup URL once real hosting exists (see README.md).
 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pmo-agents — PM/PMO agents that show their work</title>
-  <meta name="description" content="A suite of PM/PMO agents that compute status, risk, and portfolio health with deterministic rubrics first — the model narrates a decided fact, it never guesses one.">
+  <title>pmo-agents: Straight answers about your projects, not guesses</title>
+  <meta name="description" content="pmo-agents looks at your real tasks, deadlines, and updates and tells you plainly what's on track, what's not, and why, using the same clear rules every time. It never makes something up just to sound reassuring.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
   <!-- Open Graph / Twitter Card -- no og:image/twitter:image yet: producing a real one needs
@@ -18,11 +18,11 @@
        plain text-only card until a real image is supplied. -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jsconu.github.io/pmo-agents-site/">
-  <meta property="og:title" content="pmo-agents — PM/PMO agents that show their work">
-  <meta property="og:description" content="A suite of PM/PMO agents that compute status, risk, and portfolio health with deterministic rubrics first — the model narrates a decided fact, it never guesses one.">
+  <meta property="og:title" content="pmo-agents: Straight answers about your projects, not guesses">
+  <meta property="og:description" content="pmo-agents looks at your real tasks, deadlines, and updates and tells you plainly what's on track, what's not, and why, using the same clear rules every time. It never makes something up just to sound reassuring.">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="pmo-agents — PM/PMO agents that show their work">
-  <meta name="twitter:description" content="A suite of PM/PMO agents that compute status, risk, and portfolio health with deterministic rubrics first — the model narrates a decided fact, it never guesses one.">
+  <meta name="twitter:title" content="pmo-agents: Straight answers about your projects, not guesses">
+  <meta name="twitter:description" content="pmo-agents looks at your real tasks, deadlines, and updates and tells you plainly what's on track, what's not, and why, using the same clear rules every time. It never makes something up just to sound reassuring.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +35,7 @@
     <div class="wrap topbar-inner">
       <a href="#top" class="brand">pmo-agents</a>
       <nav class="topnav">
-        <a href="#agents">Agents</a>
+        <a href="#agents">What it does</a>
         <a href="#pricing">Pricing</a>
         <a href="https://app.pmo-agents.example/signup" class="btn btn-small">Start free</a>
       </nav>
@@ -47,16 +47,16 @@
     <!-- ============ Hero ============ -->
     <section class="hero">
       <div class="wrap hero-inner">
-        <h1>Status reports your team can actually trust.</h1>
+        <h1>Know if your projects are actually okay, not just what someone hopes.</h1>
         <p class="hero-sub">
-          pmo-agents computes every classification — on&nbsp;track, at&nbsp;risk, off&nbsp;track,
-          risk severity, portfolio health — with a deterministic rubric <em>before</em> any AI
-          model is involved. The model narrates a decision that's already been made. It never
-          invents one.
+          pmo-agents looks at your real tasks, deadlines, and updates and tells you plainly whether
+          things are on&nbsp;track, worth&nbsp;watching, or falling&nbsp;behind, and exactly why.
+          The answer comes from the same clear rules every time, before anything gets written up.
+          Nothing is guessed, and nothing is dressed up after the fact to sound better than it is.
         </p>
         <div class="hero-ctas">
           <a href="https://app.pmo-agents.example/signup" class="btn btn-primary btn-large">Start free</a>
-          <a href="#agents" class="btn btn-ghost btn-large">See the agents ↓</a>
+          <a href="#agents" class="btn btn-ghost btn-large">See what it does ↓</a>
         </div>
       </div>
     </section>
@@ -74,27 +74,48 @@
         </h2>
         <div class="cards cards-3">
           <div class="card">
-            <h3>Manual status decks</h3>
-            <p>Someone spends an afternoon every week assembling a status update from memory,
-            Slack scrollback, and whatever's left in their notes.</p>
+            <h3>Hours spent building a slideshow no one asked for</h3>
+            <p>Someone spends an afternoon every week piecing together a status update from
+            memory, old chat messages, and whatever notes they can still find.</p>
           </div>
           <div class="card">
-            <h3>Risk registers nobody updates</h3>
-            <p>A spreadsheet gets created at kickoff, filled in once, and never opened again —
-            until the thing it should have caught actually happens.</p>
+            <h3>A problem tracker nobody actually looks at</h3>
+            <p>A spreadsheet gets set up on day one to track what could go wrong, filled in once,
+            and never opened again, right up until the thing it was supposed to catch happens.</p>
           </div>
           <div class="card">
-            <h3>Or an AI tool that just guesses</h3>
-            <p>Plenty of "AI PM assistants" will happily tell you a project is on track from a
-            prompt and a vibe. When the data doesn't support an answer, that's a problem an
-            LLM should say out loud — not paper over.</p>
+            <h3>Or a chatbot that just makes it up</h3>
+            <p>Plenty of "AI" tools will cheerfully tell you a project is fine based on a vague
+            prompt and a good vibe. If there isn't enough information to actually know, that's
+            what it should say out loud, not something reassuring instead.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ How it's different ============ -->
+    <!-- ============ Why we skipped the standards ============ -->
     <section class="section section-alt">
+      <div class="wrap">
+        <h2>
+          <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M4 5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z"/>
+            <path d="M15 3v5h5"/>
+            <path d="M8 13l3 3 5-6"/>
+          </svg>
+          We didn't start from a standards binder
+        </h2>
+        <p class="section-lede">
+          Most advice on running projects traces back to a handful of thick official playbooks that
+          take a committee years to update. By the time one of them catches up to how teams
+          actually work, most teams have already moved on to something else. So we skipped it. We
+          didn't ask "what does the standard say"; we asked "what actually tells someone whether
+          their work is really okay," and built that instead.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ How it's different ============ -->
+    <section class="section">
       <div class="wrap">
         <h2>
           <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -104,36 +125,37 @@
           How it's different
         </h2>
         <p class="section-lede">
-          Every agent separates <strong>what happened</strong> (computed by plain, auditable code)
-          from <strong>how it's explained</strong> (written by the model). The rubric decides;
-          the model narrates. A few concrete examples from how the product actually behaves:
+          The judgment call (is this actually fine, or not) is always made by plain, checkable
+          rules first. Only after that's decided does anything get written into a sentence you'd
+          read. A few real examples of how that plays out:
         </p>
         <div class="cards cards-3">
           <div class="card card-example">
-            <p class="eyebrow">Milestone slip</p>
-            <p>A milestone that's a few days late reads <span class="pill pill-at_risk">at risk</span>,
-            not a panicked <span class="pill pill-off_track">off track</span> — there's a
-            configurable grace period before a slip escalates, because that's how a real PM
-            actually judges a late date.</p>
+            <p class="eyebrow">A deadline slips by a few days</p>
+            <p>That gets marked <span class="pill pill-at_risk">worth watching</span>, not treated
+            like a <span class="pill pill-off_track">five-alarm fire</span>. There's a little room
+            built in before a late date actually becomes a real problem, because that's how
+            someone experienced would judge it too.</p>
           </div>
           <div class="card card-example">
-            <p class="eyebrow">Sparse data</p>
-            <p>A project with too little recent activity to classify honestly reports
-            <span class="pill pill-insufficient">insufficient data</span> — never a guessed
-            <span class="pill pill-on_track">on track</span> just because nothing bad was found.</p>
+            <p class="eyebrow">Not enough information yet</p>
+            <p>If there hasn't been enough recent activity to say for sure how things are going, it
+            says exactly that: <span class="pill pill-insufficient">not enough data</span>, instead
+            of guessing <span class="pill pill-on_track">everything's fine</span> just because
+            nothing bad turned up.</p>
           </div>
           <div class="card card-example">
-            <p class="eyebrow">Severity you can trust</p>
-            <p>Before a communication draft about an open risk can be saved, the model has to
-            correctly restate that risk's real severity. Get it wrong, and the save is rejected —
-            never silently corrected, never sent out misstated.</p>
+            <p class="eyebrow">A written update you can actually trust</p>
+            <p>Before any message about a real problem goes out, it's checked against the actual
+            facts first. Get that check wrong, and the message doesn't go out. It's never quietly
+            fixed for you, and never sent out downplaying something real.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ The agents ============ -->
-    <section class="section" id="agents">
+    <!-- ============ What it does ============ -->
+    <section class="section section-alt" id="agents">
       <div class="wrap">
         <h2>
           <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -142,76 +164,82 @@
             <rect x="3" y="14" width="7" height="7" rx="1.5"/>
             <rect x="14" y="14" width="7" height="7" rx="1.5"/>
           </svg>
-          The agents
+          What it does
         </h2>
         <p class="section-lede">
-          Ten specialist agents, each doing one job well. Pick only the ones you need —
-          <a href="#pricing">pricing is a la carte</a>, never a bundle.
+          Ten focused helpers, each good at one thing. Turn on only the ones you actually need.
+          You pay per helper, never for <a href="#pricing">a bundle</a> of stuff you don't use.
         </p>
         <div class="cards cards-agents">
           <div class="card">
-            <p class="agent-name">Intake</p>
-            <p>Runs a real conversation with a stakeholder to build a project charter — asking
-            follow-ups on vague answers and flagging contradictions instead of just recording
-            whatever it's told.</p>
+            <p class="agent-name">Getting started</p>
+            <p>Has a real back-and-forth conversation with whoever's requesting the work to
+            understand what's actually needed, asking a follow-up when an answer is vague, and
+            speaking up when two answers don't add up, instead of just writing down whatever it's
+            told.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Backlog / BA</p>
-            <p>Decomposes a finalized charter into a prioritized, traceable backlog, and keeps it
-            groomed as new requests come in — with prioritization scored by config, not vibes.</p>
+            <p class="agent-name">Turning it into tasks</p>
+            <p>Takes what's been agreed on and breaks it into a clear, ordered task list, keeping
+            that list current as new requests come in, with the order set by real, visible rules,
+            not a gut feeling.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Status</p>
-            <p>Classifies project health from real task, milestone, and comms signals against an
-            explainable rubric, with every citation traceable back to the data that produced it.</p>
+            <p class="agent-name">Status checks</p>
+            <p>Looks at real tasks, deadlines, and messages and tells you plainly whether a project
+            is on track, worth watching, or behind, and points to exactly what led to that answer,
+            so you can check it yourself.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Risk</p>
-            <p>Surfaces dependency chains, ownerless work, technical-debt language, and reopened
-            tasks before they become a fire drill — tightening automatically as a milestone nears.</p>
+            <p class="agent-name">Spotting trouble early</p>
+            <p>Notices problems before they become a fire drill: work stuck behind one holdup,
+            tasks with no one clearly responsible for them, and warning phrases like "we'll deal
+            with that later" buried in updates.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Comms</p>
-            <p>Drafts audience-appropriate updates — internal, client-facing, executive, or
-            escalation — that are guardrailed to never soften or omit a real bad classification.</p>
+            <p class="agent-name">Writing updates</p>
+            <p>Drafts a status message in whatever tone fits, whether that's a quick internal note,
+            a client-facing update, an executive summary, or an urgent heads-up, all without ever
+            softening or leaving out a real problem.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Portfolio</p>
-            <p>Rolls every active project up into one leadership view: health, attention-needed
-            ranking, shared-resource conflicts, and cross-project risk clustering.</p>
+            <p class="agent-name">The big picture</p>
+            <p>Rolls every active project into one view, so a leader can see which ones need
+            attention first, without sitting through five separate status meetings to find out.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Task Auto-Update</p>
-            <p>Reads real evidence in task history and comms to propose field updates — applied
-            automatically for autonomous projects, queued for approval when a dedicated PM wants
-            the final say.</p>
+            <p class="agent-name">Keeping tasks current</p>
+            <p>Reads real evidence in task history and messages and proposes updates to task
+            details, applied automatically if you want, or held for your okay first if you'd
+            rather keep the final say.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Digest</p>
-            <p>Compiles a periodic (daily/weekly/monthly) progress summary across tasks, status,
-            risk, and issues — so nobody has to assemble one by hand.</p>
+            <p class="agent-name">Regular summaries</p>
+            <p>Sends a plain-language recap of what's changed daily, weekly, or monthly, so nobody
+            has to piece one together by hand.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Project Signal</p>
-            <p>Scans inbound messages — forwarded emails, chat excerpts, meeting notes — for
-            signs someone's asking for a new project, and flags it for a human to review.</p>
+            <p class="agent-name">Catching new requests</p>
+            <p>Watches incoming messages (a forwarded email, a chat excerpt, meeting notes) for
+            signs that someone's actually asking for a new project, and flags it for a person to
+            look at.</p>
           </div>
           <div class="card">
-            <p class="agent-name">Retrospective</p>
-            <p>On project close, writes a short, specific set of lessons learned — the kind you'd
-            actually tell a new PM inheriting a similar project, not generic platitudes.</p>
+            <p class="agent-name">Learning from what happened</p>
+            <p>When a project wraps up, writes a short, specific list of what worked and what to do
+            differently next time, the kind of thing you'd actually tell the next person taking on
+            something similar, not generic advice.</p>
           </div>
         </div>
         <p class="agents-footnote">
-          Two more agents ship free with every plan: <strong>Orchestrator</strong>, which routes
-          and sequences the specialists above, and an in-app <strong>Help</strong> assistant for
-          getting the most out of the product itself.
+          Two more things come free with every plan: something that quietly coordinates all of the
+          above behind the scenes, and a built-in help assistant for using the product itself.
         </p>
       </div>
     </section>
 
     <!-- ============ Pricing ============ -->
-    <section class="section section-alt" id="pricing">
+    <section class="section" id="pricing">
       <div class="wrap">
         <h2>
           <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -221,16 +249,16 @@
           Pricing
         </h2>
         <p class="section-lede">
-          A la carte, per agent — no tiers, no bundles, no paying for capabilities you don't use.
-          Pick the agents you need at signup, add or remove any of them later as your needs change.
+          Pay for exactly what you use: no tiers, no bundles, no paying for things that sit there
+          unused. Pick what you need when you sign up, and add or drop any of it later.
         </p>
         <!-- PRICING: update with real per-agent amounts once billing_plans.json is final. -->
         <div class="pricing-box">
-          <p class="pricing-line"><strong>Each agent is priced and billed individually</strong>,
-          monthly, with no long-term commitment.</p>
-          <p class="pricing-line">Orchestrator and the Help assistant are included automatically —
-          they're not separately billed agents.</p>
-          <p class="pricing-line muted">Exact per-agent pricing is available on the signup page.</p>
+          <p class="pricing-line"><strong>Each thing on the list above is priced and billed on its
+          own</strong>, every month, with no long-term contract.</p>
+          <p class="pricing-line">The behind-the-scenes coordinator and the built-in help assistant
+          are included automatically. You're never billed for those separately.</p>
+          <p class="pricing-line muted">Exact prices are shown when you sign up.</p>
         </div>
       </div>
     </section>
@@ -247,7 +275,7 @@
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <p>&copy; 2026 pmo-agents. Early access — the product is actively evolving.</p>
+      <p>&copy; 2026 pmo-agents. Early access: the product is actively evolving.</p>
     </div>
   </footer>
 
