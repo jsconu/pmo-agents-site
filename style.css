@@ -276,7 +276,13 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 .cta-footer h2 {
   color: #fff;
   font-size: 2rem;
-  margin-bottom: 26px;
+  margin-bottom: 14px;
+}
+
+.cta-footer p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+  margin: 0 0 26px;
 }
 
 .cta-footer .btn-primary {
