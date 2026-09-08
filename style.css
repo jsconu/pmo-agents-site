@@ -531,6 +531,25 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
 }
 .cta-footer .btn-primary:hover { background: #f4f4f5; }
 
+.cta-with-robot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* The click-all-10-combo's landing spot (see the inline script) -- hidden until the combo fires,
+   then fades/scales in. Always a light color, not the theme-following --accent-ink: the CTA
+   panel is always a dark teal gradient regardless of page theme, and --accent-ink resolves to a
+   DARK teal in light mode, which would be invisible against it. */
+.cta-robot {
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.cta-robot.cta-robot-visible { opacity: 1; transform: scale(1); }
+
 /* ---------- footer ---------- */
 .site-footer {
   background: var(--footer-bg);

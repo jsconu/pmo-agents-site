@@ -357,7 +357,36 @@
       <div class="wrap">
         <h2>See what's really going on, without adding headcount.</h2>
         <p>Start free. Turn on only what you need.</p>
-        <a href="https://app.pmo-agents.example/signup" class="btn btn-primary btn-large">Start free</a>
+        <div class="cta-with-robot">
+          <a href="https://app.pmo-agents.example/signup" class="btn btn-primary btn-large">Start free</a>
+          <!-- The click-all-10-combo's landing spot: hidden until the combo fires, then revealed
+               with the same assemble animation/quote bubble as the header mascot -- "the whole
+               team, assembled, right where you'd sign up." Same SVG markup as #mascot-robot
+               (id="cta-robot" here) so all of style.css's .mascot-btn/.mascot-assemble/
+               .mascot-piece-pop rules apply unchanged; a <div> (not a <button>) since this is a
+               one-time celebratory reveal, never itself clickable. -->
+          <div class="mascot-btn cta-robot" id="cta-robot" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="30" height="30" aria-hidden="true">
+              <rect class="mascot-arm-static" x="5" y="20" width="5" height="10" rx="2.5"/>
+              <g class="mascot-arm-wave"><rect x="30" y="20" width="5" height="10" rx="2.5"/></g>
+              <rect class="mascot-body" x="10" y="18" width="20" height="16" rx="2"/>
+              <line class="mascot-antenna" x1="18" y1="6" x2="18" y2="2"/>
+              <circle class="mascot-antenna-tip" cx="18" cy="2" r="1.7"/>
+              <rect class="mascot-head" x="12" y="6" width="16" height="14" rx="5"/>
+              <g class="mascot-assemble">
+                <g><rect x="4.5" y="18.5" width="6" height="2" rx="0.5" fill="#374151"/></g>
+                <g><polygon points="12,19.6 14.6,19.6 13.3,17.2" fill="#991b1b"/></g>
+                <g><circle cx="16" cy="26.5" r="1.3" fill="#6d28d9"/><circle cx="20" cy="26.5" r="1.3" fill="#6d28d9"/><circle cx="24" cy="26.5" r="1.3" fill="#6d28d9"/></g>
+                <g><polygon points="26,34 26,37.2 29.2,34" fill="#92400e"/></g>
+                <g><rect x="8.7" y="10" width="2.4" height="5" rx="1.2" fill="#0369a1"/><rect x="28.9" y="10" width="2.4" height="5" rx="1.2" fill="#0369a1"/></g>
+                <g><path d="M29.3 8.6 a2.3 2.3 0 0 1 4.5 0 Z" fill="#be185d"/></g>
+                <g><polyline points="24,6 22.6,4.6 25,3.3 23.6,1.9" fill="none" stroke="#a16207" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></g>
+                <g><rect x="14.5" y="11" width="11" height="3.4" rx="1.5" fill="#1d4ed8"/><rect x="15.3" y="11.8" width="9.4" height="1.8" rx="0.9" fill="var(--bg)"/></g>
+              </g>
+            </svg>
+            <span id="cta-robot-quote" class="mascot-quote-bubble" role="status"></span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -464,14 +493,14 @@
         "Full team assembled. Let's ship something.",
         "Every specialist, one mascot. Let's get to it."
       ];
-      var mascotQuoteTimer = null;
-      function showMascotQuote(pool, durationMs) {
-        var bubble = document.getElementById('mascot-quote');
+      var mascotQuoteTimers = {};
+      function showMascotQuote(pool, durationMs, bubbleId) {
+        var bubble = document.getElementById(bubbleId || 'mascot-quote');
         if (!bubble) return;
         bubble.textContent = pool[Math.floor(Math.random() * pool.length)];
         bubble.classList.add('mascot-quote-visible');
-        clearTimeout(mascotQuoteTimer);
-        mascotQuoteTimer = setTimeout(function () {
+        clearTimeout(mascotQuoteTimers[bubble.id]);
+        mascotQuoteTimers[bubble.id] = setTimeout(function () {
           bubble.classList.remove('mascot-quote-visible');
         }, durationMs);
       }
@@ -505,21 +534,28 @@
       //
       // Click-all-10 combo: once every one of the 10 has been clicked at least once, each flies
       // (as a temporary fixed-position clone of its own SVG, so the real cards are never touched)
-      // up toward the header mascot while the page scrolls back to top, then the header mascot
-      // itself plays its assemble animation as the finale -- a literal Transformers-style combine.
+      // DOWN toward the footer CTA's "Start free" button while the page scrolls there too, then
+      // the landed #cta-robot plays its assemble animation as the finale right next to the
+      // button -- the payoff of "you've now met the whole team" is the actual conversion moment,
+      // not a trip back to the top of the page.
       var agentRobotButtons = document.querySelectorAll('.agent-robot-btn');
       var clickedRobots = new Set();
       var prefersReducedMotion = window.matchMedia &&
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var ctaRobot = document.getElementById('cta-robot');
+
+      function landAtCta() {
+        ctaRobot.classList.add('cta-robot-visible');
+        playMascotAssemble(ctaRobot);
+        showMascotQuote(COMBO_QUOTES, 3400, 'cta-robot-quote');
+      }
 
       function playCombineAnimation() {
+        var ctaButton = document.querySelector('.cta-footer .btn-primary');
+
         if (prefersReducedMotion) {
-          window.scrollTo(0, 0);
-          mascotRobot.classList.remove('mascot-waving');
-          void mascotRobot.offsetWidth;
-          mascotRobot.classList.add('mascot-waving');
-          playMascotAssemble(mascotRobot);
-          showMascotQuote(COMBO_QUOTES, 3400);
+          ctaButton.scrollIntoView({ block: 'center' });
+          landAtCta();
           return;
         }
 
@@ -540,13 +576,8 @@
           clones.push(clone);
         });
 
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-
-        // The header is position: sticky, so its on-screen rect is effectively fixed for the rest
-        // of the flight as soon as we're a little way into the scroll -- a short buffer here is
-        // enough, no need to wait for the whole smooth-scroll animation to finish.
-        setTimeout(function () {
-          var targetRect = mascotRobot.getBoundingClientRect();
+        function flyClonesToCta() {
+          var targetRect = ctaButton.getBoundingClientRect();
           var targetX = targetRect.left + targetRect.width / 2;
           var targetY = targetRect.top + targetRect.height / 2;
 
@@ -561,13 +592,25 @@
 
           setTimeout(function () {
             clones.forEach(function (clone) { clone.remove(); });
-            mascotRobot.classList.remove('mascot-waving');
-            void mascotRobot.offsetWidth;
-            mascotRobot.classList.add('mascot-waving');
-            playMascotAssemble(mascotRobot);
-            showMascotQuote(COMBO_QUOTES, 3400);
+            landAtCta();
           }, 1000);
-        }, 80);
+        }
+
+        ctaButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Unlike the old header-mascot target (position: sticky, so its on-screen rect never
+        // moved during the scroll), the footer CTA is a normal in-flow element -- its rect only
+        // becomes correct once the scroll has actually finished. scrollend is the correct, modern
+        // signal for that; the timeout is a fallback for browsers that don't support it yet.
+        var settled = false;
+        function onSettled() {
+          if (settled) return;
+          settled = true;
+          window.removeEventListener('scrollend', onSettled);
+          flyClonesToCta();
+        }
+        window.addEventListener('scrollend', onSettled);
+        setTimeout(onSettled, 900);
       }
 
       agentRobotButtons.forEach(function (btn, index) {
